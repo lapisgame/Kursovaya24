@@ -1,0 +1,25 @@
+{
+    "type":"Drag",
+    "items":[
+        {
+            "text":"if",
+            "movable":true
+        },
+        {
+            "text":"__name__",
+            "movable":true
+        },
+        {
+            "text":"==",
+            "movable":false
+        },
+        {
+            "text":"\"__main__\"",
+            "movable":true
+        },
+        {
+            "text":":",
+            "movable":false
+        }
+    ]
+}
