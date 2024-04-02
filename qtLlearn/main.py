@@ -1,4 +1,5 @@
-from PyQt6.QtWidgets import QMainWindow, QApplication, QWidget
+from PyQt6 import uic
+from PyQt6.QtWidgets import QMainWindow, QApplication, QWidget, QPushButton, QGroupBox
 from MainWindow import Ui_MainWindow  # импорт нашего сгенерированного файла9
 import sys
  
@@ -6,6 +7,13 @@ class SecondaryWindow(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle('Второе окно')
+        uic.loadUi('test.ui', self)
+        
+        self.groupBox = QGroupBox('Моя GroupBox', self)  # Создаем GroupBox
+        self.groupBox.setGeometry(10, 0, 200, 790)
+
+        self.button = QPushButton('Моя кнопка', self.groupBox)
+        self.button.setGeometry(10, 20, 100, 30)
         # Здесь можно добавить дополнительные виджеты и настройки для второго окна
 
     def closeEvent(self, event):
