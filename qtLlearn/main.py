@@ -1,24 +1,14 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QMainWindow, QApplication, QWidget, QPushButton, QGroupBox
+
 from MainWindow import Ui_MainWindow  # импорт нашего сгенерированного файла9
+from LectureWindow import LectureWindow
+from TaskWindow import TaskWindow
+from SandboxWindow import SandboxWindow
+from SettingsWindow import SettingsWindow
+from AboutWindow import AboutWindow
+
 import sys
- 
-class SecondaryWindow(QWidget):
-    def __init__(self):
-        super().__init__()
-        self.setWindowTitle('Второе окно')
-        uic.loadUi('test.ui', self)
-        
-        self.groupBox = QGroupBox('Моя GroupBox', self)  # Создаем GroupBox
-        self.groupBox.setGeometry(10, 0, 200, 790)
-
-        self.button = QPushButton('Моя кнопка', self.groupBox)
-        self.button.setGeometry(10, 20, 100, 30)
-        # Здесь можно добавить дополнительные виджеты и настройки для второго окна
-
-    def closeEvent(self, event):
-        self.parent().show()  # При закрытии второго окна основное окно становится активным
-        super().closeEvent(event)
 
 class MainWindow(QMainWindow):
     def __init__(self) -> None:
@@ -32,23 +22,35 @@ class MainWindow(QMainWindow):
         self.ui.AboutButton.clicked.connect(self.setupAboutWindow)
 
     def setupLectureWindow(self):
-        self.secondary_window = SecondaryWindow()
-        self.secondary_window.setParent(self, self.secondary_window.windowFlags())
-        self.secondary_window.show()
+        self.lecture_window = LectureWindow()
+        self.lecture_window.setParent(self, self.lecture_window.windowFlags())
+        self.lecture_window.show()
         self.hide()  # Отключаем основное окно
 
 
     def setupTaskWindow(self):
-        pass
+        self.task_window = TaskWindow()
+        self.task_window.setParent(self, self.task_window.windowFlags())
+        self.task_window.show()
+        self.hide()  # Отключаем основное окно
 
     def setupSandboxWindow(self):
-        pass
+        self.sandbox_window = SandboxWindow()
+        self.sandbox_window.setParent(self, self.sandbox_window.windowFlags())
+        self.sandbox_window.show()
+        self.hide()  # Отключаем основное окно
 
     def setupSettingsWindow(self):
-        pass
+        self.settings_window = SettingsWindow()
+        self.settings_window.setParent(self, self.settings_window.windowFlags())
+        self.settings_window.show()
+        self.hide()  # Отключаем основное окно
 
     def setupAboutWindow(self):
-        pass
+        self.about_window = AboutWindow()
+        self.about_window.setParent(self, self.about_window.windowFlags())
+        self.about_window.show()
+        self.hide()  # Отключаем основное окно
         
 
 
