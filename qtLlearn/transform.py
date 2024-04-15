@@ -68,6 +68,7 @@ def docx_to_json(index, docx_path):
     # Сохранение структуры содержимого в JSON
     res_json['title'] = res_json['title'].replace('<p>','').replace('</p>','')
     res_json['index'] = index
+    res_json['content'] = "<pre>" + res_json['content'] + "</pre>"
 
     with open(f'{docx_path[:-5]}.json', 'w', encoding='utf-8') as json_file:
         json.dump(res_json, json_file, ensure_ascii=False, indent=4)
