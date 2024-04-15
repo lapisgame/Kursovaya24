@@ -1,7 +1,7 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QMainWindow, QApplication, QWidget, QPushButton, QGroupBox
 
-from MainWindow import Ui_MainWindow  # импорт нашего сгенерированного файла9
+from MainWindow import Ui_MainWindow
 from LectureWindow import LectureWindow
 from TaskWindow import TaskWindow
 from SandboxWindow import SandboxWindow
@@ -9,10 +9,17 @@ from SettingsWindow import SettingsWindow
 from AboutWindow import AboutWindow
 
 import sys
+import subprocess
 
 class MainWindow(QMainWindow):
     def __init__(self) -> None:
         super(MainWindow, self).__init__()
+        
+        result = subprocess.run(['python', 'transform.py'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        # Вывод результатов
+        print('STDOUT:', result.stdout)
+        print('STDERR:', result.stderr)
+
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.ui.LectureButton.clicked.connect(self.setupLectureWindow)
