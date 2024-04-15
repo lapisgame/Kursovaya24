@@ -81,4 +81,4 @@ class Ui_MainWindow(object):
         self.MainLabel.setText(_translate("MainWindow", "Lapis\\Learn\\Python"))
         self.LectureButton.setText(_translate("MainWindow", "Лекции"))
         self.SettingsButton.setText(_translate("MainWindow", "Настройки"))
-        self.TaskButton.setText(_translate("MainWindow", "Песочница"))
+        self.TaskButton.setText(_translate("MainWindow", "Задачи"))
