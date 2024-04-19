@@ -14,7 +14,6 @@ class DragTargetIndicator(QLabel):
             "QLabel { background-color: #ccc; border: 1px solid black; }"
         )
 
-
 class DragItem(QLabel):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
