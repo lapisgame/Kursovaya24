@@ -9,8 +9,6 @@ class SettingsWindow(QWidget):
         self.setWindowTitle('Настройки')
         self.setFixedSize(1150, 800)
         
-        
-
         self.Label1 = QLabel(self)
         self.Label1.setText('Размер шрифта')
 
@@ -32,6 +30,7 @@ class SettingsWindow(QWidget):
         self.parent().show()
         super().closeEvent(event)
 
+    # Получение данных из json
     def load_font_size(self):
         try:
             with open('config.json', 'r') as config_file:
@@ -45,6 +44,7 @@ class SettingsWindow(QWidget):
         except json.JSONDecodeError:
             print("Ошибка при разборе JSON в файле config.json.")
 
+    # Запись новых данных в json
     def update_font_size(self, font_size):
         try:
             with open('config.json', 'w') as config_file:
