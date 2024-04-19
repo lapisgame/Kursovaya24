@@ -151,7 +151,7 @@ class TaskWindow(QWidget):
         self.layout = QVBoxLayout(self)
         self.updateUI()
 
-        # Получение данных из json
+    # Получение данных из json
     def load_tasks(self, filename):
         with open(filename, 'r', encoding='utf-8') as file:
             tasks = json.load(file)
