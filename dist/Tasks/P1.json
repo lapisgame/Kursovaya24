@@ -1,0 +1,60 @@
+{
+    "index": "0",
+    "title": "ЛР 1",
+    "tasks":[
+        {
+            "type":"text_input",
+            "question":"Введите полную команду для вывода строки 'Hello, World!'",
+            "correct_answer":"print('Hello, World!')"
+        },
+        {
+            "type":"multiple_choice",
+            "question":"Выберите все варианты сокращенной записи операторов арифметических действий",
+            "options": ["=+", "-+", "+=", "/", "/=", "**", "=-", "-="],
+            "correct_answers": ["+=", "/=", "-="]
+        },
+        {
+            "type":"single_choice",
+            "question":"Вы можете напечатать свое имя на рекламном щите. Каждаябуква стоит 30 рублей. Сколько заплатит человек с именем Арсений",
+            "options": ["230", "210", "810", "220"],
+            "correct_answer": "210"
+        },
+        {
+            "type":"single_choice",
+            "question":"Какой перед вами вид условного оператора?\nif X:\n\tA=Y\nelse:\n\tA=Z",
+            "options": ["Полный", "Не полный", "Альтернативный", "Это не условный оператор"],
+            "correct_answer": "Полный"
+        },
+        {
+            "type":"drag_and_drop",
+            "question":"Расположите в правильной последовательности блоки кода:",
+            "orientation":"Vertical",
+            "options": ["\tprint('Привет, создатель')", "if name == 'Артём':", "\tprint('Ну привет, путник')", "name = input('Введите имя:')", "else:"],
+            "correct_order": ["name = input('Введите имя:')", "if name == 'Артём':", "\tprint('Привет, создатель')", "else:", "\tprint('Ну привет, путник')"]
+        },
+        {
+            "type":"text_input",
+            "question":"Дана строка\nS=’spam’\n\nКаков результат выполнения кода\nprint(S[0], S[2])",
+            "correct_answer": "s a"
+        },
+        {
+            "type":"drag_and_drop",
+            "question":"Сопоставьте опреции со столбцами\nA\tB\t_\t_\t_\t_\n0\t0\t1\t0\t0\t0\n0\t1\t1\t0\t1\t1\n1\t0\t0\t0\t1\t1\n1\t1\t0\t1\t1\t0\n",
+            "orientation":"Horizontal",
+            "options": ["A and B", "A xor B", "A or B", "Not A"],
+            "correct_order": ["Not A", "A and B", "A or B", "A xor B"]
+        },
+        {
+            "type":"multiple_choice",
+            "question":"Какие циклы можно исползовать чтобы получить сумму цифр от 0 до заданного числа x?",
+            "options": ["While True", "While x>0: ... x=x-1", "for i in range(0, 1000000):", "for i in range(x+1)"],
+            "correct_answers": ["While x>0: ... x=x-1", "for i in range(x+1)"]
+        },
+        {
+            "type":"single_choice",
+            "question":"Python это -",
+            "options": ["Компилируемый язык программирования", "Интерпретируемый язык программирования", "Котиный язык программирования", "Не язык программирования"],
+            "correct_answer": "Интерпретируемый язык программирования"
+        }
+    ]
+}
