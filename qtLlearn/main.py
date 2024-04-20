@@ -1,5 +1,4 @@
-from PyQt6 import uic
-from PyQt6.QtWidgets import QMainWindow, QApplication, QWidget, QPushButton, QGroupBox
+from PyQt6.QtWidgets import QMainWindow, QApplication, QVBoxLayout, QLabel, QDialog
 
 from MainWindow import Ui_MainWindow
 from LectureWindow import LectureWindow
@@ -9,16 +8,30 @@ from SettingsWindow import SettingsWindow
 from AboutWindow import AboutWindow
 
 import sys
+import time
 import subprocess
+
+class WaitDialog(QDialog):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setWindowTitle('Пожалуйста, подождите...')
+        self.setFixedSize(200, 100)
+        layout = QVBoxLayout()
+        self.label = QLabel("Создаём лекции...")
+        layout.addWidget(self.label)
+        self.setLayout(layout)
 
 class MainWindow(QMainWindow):
     def __init__(self) -> None:
         super(MainWindow, self).__init__()
         
+        dialog = WaitDialog()
+        dialog.show()
+
         result = subprocess.run(['python', 'transform.py'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        # Вывод результатов
-        print('STDOUT:', result.stdout)
-        print('STDERR:', result.stderr)
+
+        time.sleep(1)
+        dialog.close()
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
