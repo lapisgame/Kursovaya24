@@ -73,7 +73,7 @@ def docx_to_json(index, docx_path):
     with open(f'{docx_path[:-5]}.json', 'w', encoding='utf-8') as json_file:
         json.dump(res_json, json_file, ensure_ascii=False, indent=4)
 
-    print("Содержимое документа сохранено в JSON.")
+    # print("Содержимое документа сохранено в JSON.")
         
 
 
