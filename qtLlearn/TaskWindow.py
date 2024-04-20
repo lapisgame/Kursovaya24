@@ -1,10 +1,10 @@
-import sys
+import os
 import json
 from PyQt6.QtWidgets import (
-    QWidget, QVBoxLayout, QLabel, QRadioButton, QCheckBox, QLineEdit, QPushButton, QMessageBox, QApplication, QHBoxLayout
+    QWidget, QVBoxLayout, QLabel, QRadioButton, QCheckBox, QLineEdit, QPushButton, QMessageBox, QSizePolicy, QHBoxLayout, QGroupBox, QSpacerItem
 )
 from PyQt6.QtCore import Qt, QMimeData, pyqtSignal
-from PyQt6.QtGui import QDrag, QPixmap
+from PyQt6.QtGui import QDrag, QPixmap, QFont
 
 class DragTargetIndicator(QLabel):
     def __init__(self, parent=None):
@@ -17,11 +17,26 @@ class DragTargetIndicator(QLabel):
 class DragItem(QLabel):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.setContentsMargins(25, 5, 25, 5)
-        self.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.setStyleSheet("border: 1px solid black;")
+        self.setContentsMargins(5, 1, 5, 1)
+        self.setAlignment(Qt.AlignmentFlag.AlignLeft)
+        self.FontSize = self.getFontJson()
+        self.font = QFont('JetBrains Mono', int(self.FontSize))
+        self.setFont(self.font)
+        self.setStyleSheet("border: 1px solid black; padding: auto 0")
         # Store data separately from display label, but use label for default.
         self.data = self.text()
+
+    def getFontJson(self):
+        config_file_path = 'config.json'
+        try:
+            with open(config_file_path, 'r') as config_file:
+                config = json.load(config_file)
+                font_size = config.get('fontSize')
+                return font_size
+        except FileNotFoundError:
+            print(f"Файл {config_file_path} не найден.")
+        except json.JSONDecodeError:
+            print(f"Ошибка при разборе JSON в файле {config_file_path}.")
 
     def mouseMoveEvent(self, e):
         if e.buttons() == Qt.MouseButton.LeftButton:
@@ -145,17 +160,78 @@ class TaskWindow(QWidget):
         super().__init__()
         self.setWindowTitle('Задачи')
         self.setFixedSize(1150, 800)
-        tasks = self.load_tasks('Tasks/test.json')
-        self.tasks = tasks
+
+        self.groupBox = QGroupBox('Выбор Задания', self)
+        self.groupBox.setGeometry(10, 0, 200, 790)
+
+        self.taskBox = QGroupBox('Задание', self)
+        self.taskBox.setGeometry(210, 0, 930, 780)
+
+        self.FontSize = self.getFontJson()
+        self.font = QFont('JetBrains Mono', int(self.FontSize))
+
+        self.initTaskButtons()
+
+    def getFontJson(self):
+        config_file_path = 'config.json'
+        try:
+            with open(config_file_path, 'r') as config_file:
+                config = json.load(config_file)
+                font_size = config.get('fontSize')
+                return font_size
+        except FileNotFoundError:
+            print(f"Файл {config_file_path} не найден.")
+        except json.JSONDecodeError:
+            print(f"Ошибка при разборе JSON в файле {config_file_path}.")
+
+
+    def initTaskButtons(self):
+        layout = QVBoxLayout()
+        # Путь к папке с лекциями
+        tasks_path = os.path.join(os.getcwd(), 'Tasks')
+
+        files = [''] * len(os.listdir(tasks_path))
+
+        # Перебор всех файлов в папке Lectures
+        for filename in os.listdir(tasks_path):
+            if filename.endswith('.json'):
+                file_path = os.path.join(tasks_path, filename)
+                with open(file_path, 'r', encoding='utf-8') as file:
+                    data = json.load(file)
+                    index = data.get('index', '-1')
+                    files[int(index)] = file_path
+
+        # Перебор всех файлов в папке Lectures
+        for file_path in files:
+            if file_path != '':
+                with open(file_path, 'r', encoding='utf-8') as file:
+                    data = json.load(file)
+                    title = data.get('title', 'No Title')
+
+                    # Создание кнопки для каждой лекции
+                    button = QPushButton(title)
+                    button.clicked.connect(lambda checked, path=file_path: self.openTask(path))
+                    layout.addWidget(button)
+
+        # Добавление растягивающего элемента в конец макета, чтобы вытолкнуть кнопки вверх
+        spacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        layout.addItem(spacer)
+
+        self.groupBox.setLayout(layout)
+
+    def openTask(self, task_path):
+        self.tasks = self.load_tasks(task_path)
         self.current_task_index = 0
-        self.layout = QVBoxLayout(self)
+        
+        self.layout = QVBoxLayout(self.taskBox)
+        
         self.updateUI()
 
     # Получение данных из json
     def load_tasks(self, filename):
         with open(filename, 'r', encoding='utf-8') as file:
             tasks = json.load(file)
-        return tasks
+        return tasks['tasks']
 
     # Ивент закрытия окна
     def closeEvent(self, event):
@@ -171,28 +247,39 @@ class TaskWindow(QWidget):
         if self.current_task_index < len(self.tasks):
             task = self.tasks[self.current_task_index]
             self.question_label = QLabel(task['question'], self)
+            self.question_label.setFont(self.font)
+            self.question_label.setWordWrap(True)
             self.layout.addWidget(self.question_label)
 
             self.answers_widgets = []
 
-            if task['type'] in ['single_choice', 'multiple_choice']:
+            if task['type'] == 'single_choice':
                 for option in task['options']:
-                    if task['type'] == 'single_choice':
-                        rb = QRadioButton(option, self)
-                        self.answers_widgets.append(rb)
-                        self.layout.addWidget(rb)
-                    elif task['type'] == 'multiple_choice':
-                        cb = QCheckBox(option, self)
-                        self.answers_widgets.append(cb)
-                        self.layout.addWidget(cb)
+                    rb = QRadioButton(option, self)
+                    rb.setFont(self.font)
+                    self.answers_widgets.append(rb)
+                    self.layout.addWidget(rb)
             
+            elif task['type'] == 'multiple_choice':
+                for option in task['options']:
+                    cb = QCheckBox(option, self)
+                    cb.setFont(self.font)
+                    self.answers_widgets.append(cb)
+                    self.layout.addWidget(cb)
+
             elif task['type'] == 'text_input':
                 self.text_input = QLineEdit(self)
+                self.text_input.setFont(self.font)
                 self.answers_widgets.append(self.text_input)
                 self.layout.addWidget(self.text_input)
             
             elif task['type'] == 'drag_and_drop':
-                self.drag_widget = DragWidget()
+                orient = task['orientation']
+                if orient == 'Horizontal':
+                    self.drag_widget = DragWidget(orientation=Qt.Orientation.Horizontal)
+                else:
+                    self.drag_widget = DragWidget(orientation=Qt.Orientation.Vertical)
+
                 for item in task['options']:
                     drag_item = DragItem(item)
                     self.drag_widget.add_item(drag_item)
@@ -204,7 +291,8 @@ class TaskWindow(QWidget):
         
         # Если задания закончились
         else:
-            self.question_label = QLabel("Конец викторины!", self)
+            self.question_label = QLabel("Задание завершено", self)
+            self.question_label.setFont(self.font)
             self.layout.addWidget(self.question_label)
 
     def checkAnswer(self):
