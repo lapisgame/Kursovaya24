@@ -1,3 +1,5 @@
 qtLlearn/__pycache__/
-build/main
 NewLecture
+build
+.vscode
+DragTests
