@@ -1,0 +1,61 @@
+{
+    "index": "4",
+    "title": "ЛР 5",
+    "tasks":[
+        {
+            "type": "drag_and_drop",
+            "question": "Соберите иерархию классов (вертикальный порядок):",
+            "orientation": "Vertical",
+            "options": [
+                "class ElectricCar(Car):",
+                "class Car:",
+                "self.battery = 100",
+                "def __init__(self, model):",
+                "super().__init__(model)"                
+            ],
+            "correct_order": [
+                "class Car:",
+                "class ElectricCar(Car):",
+                "def __init__(self, model):",
+                "super().__init__(model)",
+                "self.battery = 100"
+            ]
+        },
+        {
+            "type": "multiple_choice",
+            "question": "Какие концепции ООП реализует Python?",
+            "options": ["Инкапсуляция", "Полиморфизм", "Мемоизация", "Наследование", "Аппликативность"],
+            "correct_answers": ["Инкапсуляция", "Полиморфизм", "Наследование"]
+        },
+        {
+            "type": "text_input",
+            "question": "Напишите магический метод который необходимо переопределить для строкового представления объекта класса `Book`:",
+            "correct_answer": "__str__'"
+        },
+        {
+            "type": "single_choice",
+            "question": "Что такое MRO в контексте множественного наследования?",
+            "options": ["Method Return Object", "Method Resolution Order", "Memory Resource Optimization", "Multi-Range Output"],
+            "correct_answer": "Method Resolution Order"
+        },
+        {
+            "type": "drag_and_drop",
+            "question": "Соберите перегрузку оператора сложения для векторов (горизонтальный порядок):",
+            "orientation": "Horizontal",
+            "options": [
+                "return Vector(",
+                "def __add__",
+                "self.x + other.x,",
+                "(self, other):",
+                "self.y + other.y)"
+            ],
+            "correct_order": [
+                "def __add__",
+                "(self, other):",
+                "return Vector(",
+                "self.x + other.x,",
+                "self.y + other.y)"
+            ]
+        }
+    ]
+}

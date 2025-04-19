@@ -1,0 +1,61 @@
+{
+    "index": "3",
+    "title": "ЛР 4",
+    "tasks":[
+        {
+            "type": "drag_and_drop",
+            "question": "Соберите конструкцию для работы с датами (вертикальный порядок):",
+            "orientation": "Vertical",
+            "options": [
+                "from datetime import datetime",
+                "print(datetime.now().year)",
+                "import time",
+                "current_date = datetime.today()"
+            ],
+            "correct_order": [
+                "import time",
+                "from datetime import datetime",
+                "current_date = datetime.today()",
+                "print(datetime.now().year)"
+            ]
+        },
+        {
+            "type": "multiple_choice",
+            "question": "Какие модули используются для работы с ОС?",
+            "options": ["sys", "math", "os", "shutil", "random"],
+            "correct_answers": ["os", "shutil"]
+        },
+        {
+            "type": "text_input",
+            "question": "Напишите выражение для генерации случайного целого от 10 до 50 с помощью модуля random:",
+            "correct_answer": "random.randint(10, 50)"
+        },
+        {
+            "type": "single_choice",
+            "question": "Какой модуль использовать для вычисления гипотенузы?",
+            "options": ["statistics", "math", "numpy", "geometry"],
+            "correct_answer": "math"
+        },
+        {
+            "type": "drag_and_drop",
+            "question": "Соберите путь к файлу через os.path.join (горизонтальный порядок):",
+            "orientation": "Horizontal",
+            "options": [
+                "'user'",
+                "'home'",
+                "'test.txt'",
+                "'docs'",
+                ")",
+                "os.path.join("
+            ],
+            "correct_order": [
+                "os.path.join(",
+                "'home'",
+                "'user'",
+                "'docs'",
+                ")",
+                "'test.txt'"
+            ]
+        }
+    ]
+}

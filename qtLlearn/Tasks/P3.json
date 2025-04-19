@@ -1,0 +1,58 @@
+{
+    "index": "2",
+    "title": "ЛР 3",
+    "tasks":[
+        {
+            "type": "drag_and_drop",
+            "question": "Соберите срез для реверса строки (вертикальный порядок):",
+            "orientation": "Vertical",
+            "options": [
+                "s = 'abcdef'",
+                "print(s[::1])", 
+                "print(s[::-1])",
+                "print(s[5:0:-1])"
+            ],
+            "correct_order": [
+                "s = 'abcdef'",
+                "print(s[::-1])"
+            ]
+        },
+        {
+            "type": "multiple_choice",
+            "question": "Какие методы возвращают новую строку?",
+            "options": ["upper()", "append()", "split()", "sort()", "replace()"],
+            "correct_answers": ["upper()", "split()", "replace()"]
+        },
+        {
+            "type": "text_input",
+            "question": "Напишите выражение для получения подстроки 'klm' из `text = 'abcdefghijklmnop'` через срезы:",
+            "correct_answer": "text[10:13]"
+        },
+        {
+            "type": "single_choice",
+            "question": "Что вернет `'Hello'[::2] + 'World'[4]`?",
+            "options": ["HloW", "Hlod", "HloD", "Hlood"],
+            "correct_answer": "HloD"
+        },
+        {
+            "type": "drag_and_drop",
+            "question": "Соберите f-строку (горизонтальный порядок):",
+            "orientation": "Horizontal",
+            "options": [
+                "f'Результат:", 
+                "{5+3}", 
+                "ок'", 
+                "'", 
+                "{math.sqrt(16):.0f}",
+                "="
+            ],
+            "correct_order": [
+                "f'Результат: ",
+                "{5+3}",
+                "=",
+                "{math.sqrt(16):.0f}",
+                "ок'"
+            ]
+        }
+    ]
+}

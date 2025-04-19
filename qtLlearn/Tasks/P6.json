@@ -1,0 +1,49 @@
+{
+    "index": "5",
+    "title": "ЛР 6",
+    "tasks":[
+        {
+            "type": "drag_and_drop",
+            "question": "Расположите этапы расчета перестановок без повторений (вертикальный порядок):",
+            "orientation": "Vertical",
+            "options": [
+                "print(result)",
+                "n = 5",
+                "k = 3",
+                "import math",
+                "math.perm(n, k)"
+            ],
+            "correct_order": [
+                "import math",
+                "n = 5",
+                "k = 3",
+                "result = math.perm(n, k)",
+                "print(result)"
+            ]
+        },
+        {
+            "type": "multiple_choice",
+            "question": "Какие формулы относятся к комбинаторике?",
+            "options": ["n! / (k!(n-k)!)", "n^k", "n! / (n-k)!", "n + k - 1 choose k", "log(n!)"],
+            "correct_answers": ["n! / (k!(n-k)!)", "n! / (n-k)!", "n + k - 1 choose k"]
+        },
+        {
+            "type": "text_input",
+            "question": "Напишите выражение для числа сочетаний из 10 по 4 с использованием `math.comb`:",
+            "correct_answer": "math.comb(10, 4)"
+        },
+        {
+            "type": "single_choice",
+            "question": "Сколько слов можно составить из букв 'ABC' (без повторений)?",
+            "options": ["6", "9", "3", "12"],
+            "correct_answer": "6"
+        },
+        {
+            "type": "drag_and_drop",
+            "question": "Соберите формулу для размещений с повторениями (горизонтальный порядок):",
+            "orientation": "Horizontal",
+            "options": ["A", "^", "n", "k", "="],
+            "correct_order": ["A", "=", "n", "^", "k"]
+        }
+    ]
+}

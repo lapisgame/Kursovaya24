@@ -1,0 +1,50 @@
+{
+    "index": "1",
+    "title": "ЛР 2",
+    "tasks":[
+        {
+            "type": "multiple_choice",
+            "question": "Какие операции НЕ изменяют исходный список?",
+            "options": ["lst * 2", "lst[::-1]", "lst.append(5)", "lst.sort()", "lst + [10]"],
+            "correct_answers": ["lst * 2", "lst[::-1]", "lst + [10]"]
+        },
+        {
+            "type": "multiple_choice",
+            "question": "Какие методы изменяют исходный список? Выберите все подходящие:",
+            "options": ["append()", "sorted()", "pop()", "reverse()", "len()"],
+            "correct_answers": ["append()", "pop()", "reverse()"]
+        },
+        {
+            "type": "text_input",
+            "question": "Напишите выражение для получения последнего элемента списка `arr` через отрицательный индекс:",
+            "correct_answer": "arr[-1]"
+        },
+        {
+            "type": "single_choice",
+            "question": "Что выведет код: `print([i%2 for i in range(4)])`?",
+            "options": ["[0,1,0,1]", "[1,0,1,0]", "[0,1]", "Ошибка"],
+            "correct_answer": "[0,1,0,1]"
+        },
+        {
+            "type": "drag_and_drop",
+            "question": "Соберите алгоритм удаления дубликатов с сохранением порядка (перетаскивание по вертикали):",
+            "orientation": "Vertical",
+            "options": [
+                "        res.append(num)",
+                "for num in arr:",
+                "    if num not in res:",
+                "arr = [2,3,2,5,3]",
+                "print(res)",
+                "res = []"
+            ],
+            "correct_order": [
+                "arr = [2,3,2,5,3]",
+                "res = []",
+                "for num in arr:",
+                "    if num not in res:",
+                "        res.append(num)",
+                "print(res)"
+            ]
+        }
+    ]
+}
