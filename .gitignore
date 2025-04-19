@@ -1,4 +1,5 @@
 qtLlearn/__pycache__/
+qtLlearn/config.json
 NewLecture
 build
 .vscode
