@@ -75,12 +75,22 @@ def docx_to_json(index, docx_path):
 
     # print("Содержимое документа сохранено в JSON.")
         
+def find(name, path):
+    try:
+        for root, dirs, files in os.walk(path):
+            if name in files:
+                return os.path.join(root, name)
+            else:
+                return False
+    except:
+        return False
 
-
-index = 0
-docx_path = 'C:/Users/lapis/Desktop/Kursach24/qtLlearn/Lectures'
-for filename in os.listdir(docx_path):
-    if filename.endswith('.docx'):
-        file_path = os.path.join(docx_path, filename)
-        docx_to_json(index, file_path)
-        index += 1
+docx_path = './Lectures'
+for filenumber in range(100):
+    try:
+        filename = str(filenumber) + '.docx'
+        filepath = find(filename, docx_path)
+        if filenumber != False:
+            docx_to_json(filenumber, filepath)
+    except:
+        pass
